@@ -5,6 +5,7 @@ import com.mordas.project.telegrambot.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +17,7 @@ public class CityService {
     public City getById(Long id) {
         Optional<City> entity = cityRepository.findById(id);
 
-        return entity.orElseThrow(RuntimeException::new);
+        return entity.orElseThrow(EntityNotFoundException::new);
     }
 
     public List<City> getAll() {
@@ -28,6 +29,6 @@ public class CityService {
     }
 
     public void create(City city) {
-         cityRepository.save(city);
+        cityRepository.save(city);
     }
 }

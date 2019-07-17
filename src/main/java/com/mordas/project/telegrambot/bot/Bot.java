@@ -20,8 +20,8 @@ import java.util.logging.Logger;
 @Component
 public class Bot extends TelegramLongPollingBot {
 
-    /*@Autowired
-    BotService botService;*/
+    @Autowired
+    BotService botService;
 
     @Value("${bot.token}")
     private String token;
@@ -49,9 +49,10 @@ public class Bot extends TelegramLongPollingBot {
             String text = message.getText();
             response.setText(text);
             try {
-                //response.setText(botService.getMessage(text));
+                response.setText(botService.getMessage(text));
                 execute(response);
             } catch (TelegramApiException e) {
+                System.out.println("Can't update message");
             }
         }
     }
@@ -62,9 +63,8 @@ public class Bot extends TelegramLongPollingBot {
         try {
 
             botsApi.registerBot(this);
-           // log.info("==================================TelegramBotService.afterPropertiesSet:registerBot finish");
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            System.out.println("Can't register the bot");
         }
     }
 

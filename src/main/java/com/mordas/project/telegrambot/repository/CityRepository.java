@@ -13,5 +13,7 @@ public interface CityRepository extends CrudRepository<City, Long> {
 
     Optional<City> findById(Long id);
 
+    Optional<City> findByName(String name);
+
     void deleteById(Long id);
 }

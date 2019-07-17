@@ -11,8 +11,9 @@ public class Message {
     private Long id;
     private String text;
     @ManyToOne
-    @JoinColumn(name="city_id", nullable=false)
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
+
     public Long getId() {
         return id;
     }
